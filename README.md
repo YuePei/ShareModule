@@ -17,52 +17,64 @@ ShareModule is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'ShareModule'
+source 'https://github.com/YuePei/privateSpecRepo.git'
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'test1' do
+
+use_frameworks!
+    pod 'ShareModule'
+
+@end
 ```
 
 ## Use
+#### 1. init
 ```
 ShareListView *shareView = [[ShareListView alloc]initWithShareIcons:@[[UIImage imageNamed:@"weChat"],
-[UIImage imageNamed:@"朋友圈"],
-[UIImage imageNamed:@"QQ"],
-[UIImage imageNamed:@"空间"],
-[UIImage imageNamed:@"支付宝"],
-[UIImage imageNamed:@"微博"],
-[UIImage imageNamed:@"更多"]]
-ShareTitles:@[@"微信",@"朋友圈",@"QQ好友",@"QQ空间",@"支付宝",@"微博", @"更多"]
-andVC:self];
+                                                                      [UIImage imageNamed:@"朋友圈"],
+                                                                      [UIImage imageNamed:@"QQ"],
+                                                                      [UIImage imageNamed:@"空间"],
+                                                                      [UIImage imageNamed:@"支付宝"],
+                                                                      [UIImage imageNamed:@"微博"],
+                                                                      [UIImage imageNamed:@"更多"]]
+                                                         ShareTitles:@[@"微信",@"朋友圈",@"QQ好友",@"QQ空间",@"支付宝",@"微博", @"更多"]
+                                                         andVC:self];
 shareView.delegate = self;
 [[UIApplication sharedApplication].keyWindow addSubview:shareView];
 ```
-## select item
+
+#### 2. select item
 Follow `ShareViewDelegate` and implement `selectShareIconAtIndexPath` method like this :
 ```
 #pragma mark ShareViewDelegate
 - (void)selectShareIconAtIndexPath:(NSIndexPath *)indexPath {
-switch (indexPath.row) {
-case 0:
+    switch (indexPath.row) {
+        case 0:
 
-break;
-case 1:
+            break;
+        case 1:
 
-break;
-case 2:
+            break;
+        case 2:
 
-break;
-case 3:
+            break;
+        case 3:
 
-break;
-case 4:
+            break;
+        case 4:
 
-break;
-case 5:
+            break;
+        case 5:
 
-break;
-case 6: {
+            break;
+        case 6: {
 
-}
-default:
-break;
-}
+        }
+            break;
+        default:
+            break;
+    }
 }
 ```
+
