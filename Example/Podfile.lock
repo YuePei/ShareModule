@@ -1,0 +1,19 @@
+PODS:
+  - Masonry (1.1.0)
+  - ShareModule (0.0.1):
+    - Masonry (~> 1.1.0)
+
+DEPENDENCIES:
+  - ShareModule (from `../`)
+
+EXTERNAL SOURCES:
+  ShareModule:
+    :path: ../
+
+SPEC CHECKSUMS:
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  ShareModule: 3a84b19aa7e2744df5a031149b431b04e4930adc
+
+PODFILE CHECKSUM: 60d7138a5ad8fdd458867a592083f44221ce58c5
+
+COCOAPODS: 1.4.0

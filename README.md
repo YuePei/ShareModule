@@ -20,10 +20,49 @@ it, simply add the following line to your Podfile:
 pod 'ShareModule'
 ```
 
-## Author
+## Use
+```
+ShareListView *shareView = [[ShareListView alloc]initWithShareIcons:@[[UIImage imageNamed:@"weChat"],
+[UIImage imageNamed:@"朋友圈"],
+[UIImage imageNamed:@"QQ"],
+[UIImage imageNamed:@"空间"],
+[UIImage imageNamed:@"支付宝"],
+[UIImage imageNamed:@"微博"],
+[UIImage imageNamed:@"更多"]]
+ShareTitles:@[@"微信",@"朋友圈",@"QQ好友",@"QQ空间",@"支付宝",@"微博", @"更多"]
+andVC:self];
+shareView.delegate = self;
+[[UIApplication sharedApplication].keyWindow addSubview:shareView];
+```
+## select item
+Follow `ShareViewDelegate` and implement `selectShareIconAtIndexPath` method like this :
+```
+#pragma mark ShareViewDelegate
+- (void)selectShareIconAtIndexPath:(NSIndexPath *)indexPath {
+switch (indexPath.row) {
+case 0:
 
-YuePei, my.world@outlook.com
+break;
+case 1:
 
-## License
+break;
+case 2:
 
-ShareModule is available under the MIT license. See the LICENSE file for more info.
+break;
+case 3:
+
+break;
+case 4:
+
+break;
+case 5:
+
+break;
+case 6: {
+
+}
+default:
+break;
+}
+}
+```
