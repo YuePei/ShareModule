@@ -10,7 +10,14 @@
 
 @protocol ShareViewDelegate <NSObject>
 
+//选择了某一分享类型
 - (void)selectShareIconAtIndexPath:(NSIndexPath *)indexPath;
+
+//截图编辑
+- (void)screenshotToEdit;
+
+//添加表情
+- (void)addExpression;
 
 @end
 

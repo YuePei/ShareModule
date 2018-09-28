@@ -83,14 +83,6 @@ static const float buttonWidth_Height = 100;
     return self;
 }
 
-- (void)setScreenShotImage:(UIImage *)image {
-    self.screenShotImageView.image = image;
-}
-
-- (void)getVc:(UIViewController *)vc {
-    self.viewController = vc;
-}
-
 #pragma mark UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.array.count;
@@ -114,7 +106,7 @@ static const float buttonWidth_Height = 100;
 
 - (UIImage *)screenShotWithFrame:(CGRect )imageRect {
     
-    UIGraphicsBeginImageContextWithOptions(CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT), NO, 0.0);
+    UIGraphicsBeginImageContextWithOptions(imageRect.size, NO, 0.0);
     [self.viewController.view.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *screenShotImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
@@ -130,6 +122,7 @@ static const float buttonWidth_Height = 100;
     [self insertSubview:effectView belowSubview:self.middleView];
 }
 
+//给半透明背景加点击手势, 点击半透明背景隐藏分享控件
 - (void)addGesture {
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideMiddleView)];
     [self.translucentView addGestureRecognizer:tapGesture];
@@ -192,7 +185,7 @@ static const float buttonWidth_Height = 100;
         make.bottom.mas_equalTo(-10);
     }];
     [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:0.6 initialSpringVelocity:15 options:UIViewAnimationOptionCurveEaseIn animations:^{
-
+        
         [self.middleView.superview layoutIfNeeded];
         
     } completion:^(BOOL finished) {
@@ -200,6 +193,15 @@ static const float buttonWidth_Height = 100;
     }];
 }
 
+//截图编辑按钮的点击方法
+- (void)screenshot {
+    [self.delegate screenshotToEdit];
+}
+
+//添加表情按钮的点击方法
+- (void)addExpressions {
+    [self.delegate addExpression];
+}
 
 //调整按钮的图文位置
 - (void)adjustButtonImageViewUPTitleDownWithButton:(UIButton *)button {
@@ -230,7 +232,7 @@ static const float buttonWidth_Height = 100;
     }else {
         titleOffsetX = buttonWidth / 2.0 - ivWidth - titleWidth / 2.0;
     }
-//    [button setTitleEdgeInsets:UIEdgeInsetsMake(titleOffsetY , titleOffsetX, 0, 0)];
+    //    [button setTitleEdgeInsets:UIEdgeInsetsMake(titleOffsetY , titleOffsetX, 0, 0)];
     [button setTitleEdgeInsets:UIEdgeInsetsMake(titleOffsetY , -28.5, 0, 0)];
     NSLog(@"   :-(图片宽度(%f) + 文字宽度(%f) - 按钮宽度的一半(%f/2) - 文字宽度的一半(%f/2) = 文字的偏移量(%f))",ivWidth, titleWidth, buttonWidth, titleWidth, titleOffsetX);
 }
@@ -286,6 +288,8 @@ static const float buttonWidth_Height = 100;
         [self setNeedsLayout];
         [self layoutIfNeeded];
         [self adjustButtonImageViewUPTitleDownWithButton:_screenShotButton];
+        
+        [_screenShotButton addTarget:self action:@selector(screenshot) forControlEvents:UIControlEventTouchUpInside];
     }
     return _screenShotButton;
 }
@@ -306,6 +310,8 @@ static const float buttonWidth_Height = 100;
         _addExpressionButton.titleLabel.font = [UIFont systemFontOfSize:14];
         [_addExpressionButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [self adjustButtonImageViewUPTitleDownWithButton:_addExpressionButton];
+        
+        [_addExpressionButton addTarget:self action:@selector(addExpressions) forControlEvents:UIControlEventTouchUpInside];
     }
     return _addExpressionButton;
 }

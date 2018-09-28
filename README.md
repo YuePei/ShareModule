@@ -48,6 +48,14 @@ shareView.delegate = self;
 Follow `ShareViewDelegate` and implement `selectShareIconAtIndexPath` method like this :
 ```
 #pragma mark ShareViewDelegate
+- (void)screenshotToEdit {
+
+}
+
+- (void)addExpression {
+
+}
+
 - (void)selectShareIconAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.row) {
         case 0:
@@ -76,5 +84,6 @@ Follow `ShareViewDelegate` and implement `selectShareIconAtIndexPath` method lik
             break;
     }
 }
+
 ```
 
