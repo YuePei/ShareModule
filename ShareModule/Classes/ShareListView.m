@@ -195,11 +195,13 @@ static const float buttonWidth_Height = 100;
 
 //截图编辑按钮的点击方法
 - (void)screenshot {
+    [self hideShareModule];
     [self.delegate screenshotToEdit];
 }
 
 //添加表情按钮的点击方法
 - (void)addExpressions {
+    [self hideShareModule];
     [self.delegate addExpression];
 }
 
@@ -234,7 +236,7 @@ static const float buttonWidth_Height = 100;
     }
     //    [button setTitleEdgeInsets:UIEdgeInsetsMake(titleOffsetY , titleOffsetX, 0, 0)];
     [button setTitleEdgeInsets:UIEdgeInsetsMake(titleOffsetY , -28.5, 0, 0)];
-    NSLog(@"   :-(图片宽度(%f) + 文字宽度(%f) - 按钮宽度的一半(%f/2) - 文字宽度的一半(%f/2) = 文字的偏移量(%f))",ivWidth, titleWidth, buttonWidth, titleWidth, titleOffsetX);
+//    NSLog(@"   :-(图片宽度(%f) + 文字宽度(%f) - 按钮宽度的一半(%f/2) - 文字宽度的一半(%f/2) = 文字的偏移量(%f))",ivWidth, titleWidth, buttonWidth, titleWidth, titleOffsetX);
 }
 
 #pragma mark lazy
