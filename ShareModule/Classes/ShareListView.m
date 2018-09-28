@@ -76,7 +76,7 @@ static const float buttonWidth_Height = 100;
         [self screenShotButton];
         [self addExpressionButton];
         [self addGesture];
-        [self showMiddleView];
+        [self showShareModule];
         self.viewController = vc;
         self.screenShotImageView.image = [self screenShotWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     }
@@ -97,7 +97,7 @@ static const float buttonWidth_Height = 100;
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     //1. 隐藏分享控件
-    [self hideMiddleView];
+    [self hideShareModule];
     //2. 选择分享类型
     [self.delegate selectShareIconAtIndexPath:indexPath];
 }
@@ -124,11 +124,11 @@ static const float buttonWidth_Height = 100;
 
 //给半透明背景加点击手势, 点击半透明背景隐藏分享控件
 - (void)addGesture {
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideMiddleView)];
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideShareModule)];
     [self.translucentView addGestureRecognizer:tapGesture];
 }
 //隐藏分享模块
-- (void)hideMiddleView {
+- (void)hideShareModule {
     
     [self.screenShotImageView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.left.top.right.bottom.mas_equalTo(0);
@@ -155,7 +155,7 @@ static const float buttonWidth_Height = 100;
 }
 
 //显示分享模块
-- (void)showMiddleView {
+- (void)showShareModule {
     //0. 隐藏状态栏
     [UIApplication sharedApplication].statusBarHidden = YES;
     //1. 截图

@@ -32,5 +32,11 @@
  */
 - (instancetype)initWithShareIcons:(NSArray *)icons ShareTitles:(NSArray *)titles andVC:(UIViewController *)vc;
 
+//显示分享控件
+- (void)showShareModule;
+
+//隐藏分享控件
+- (void)hideShareModule;
+
 @end
 
